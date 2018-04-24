@@ -25,6 +25,10 @@ namespace ThemeParkDatabase
 
                 var config = host.Services.GetRequiredService<IConfiguration>();
                 var testUserPW = "abcdeF123@4";
+
+ 
+
+
                 try
                 {
                     DbInitializer.Initialize(services, testUserPW).Wait();

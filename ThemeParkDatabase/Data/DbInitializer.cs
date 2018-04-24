@@ -21,7 +21,24 @@ namespace ThemeParkDatabase.Data
                  <ApplicationDbContext>>()))
             {
                 var adminId = await EnsureUser(serviceProvider, testUserPW, "admin@mail.com");
+                //var managerId = await EnsureUser(serviceProvider, "abcdeF123@4", "manager@mail.com");
+                //var userId = await EnsureUser(serviceProvider, "abcdeF123@4", "employee@mail.com");
+
                 await EnsureRole(serviceProvider, adminId, Constants.AdministratorsRole);
+
+                var user = new ApplicationUser();
+                user.UserName = "employee";
+                user.Email = "employee@mail.com";
+                string up = "abcdeF123@4";
+
+                var u = await EnsureUser(serviceProvider, up, user.Email);
+                await EnsureRole(serviceProvider, u, Constants.EmployeeRole);
+
+
+
+
+                //await EnsureRole(serviceProvider, managerId, Constants.AdministratorsRole);
+                //await EnsureRole(serviceProvider, userId, Constants.AdministratorsRole);
 
                 using (var context = new ThemeParkDatabaseContext(serviceProvider.GetRequiredService<DbContextOptions<ThemeParkDatabaseContext>>()))
                 {

@@ -45,7 +45,25 @@ namespace ThemeParkDatabase
                     RR = await RoleManager.CreateAsync(new IdentityRole(roleName));
                 }
             }
-        }
+
+            
+         
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+            }
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
