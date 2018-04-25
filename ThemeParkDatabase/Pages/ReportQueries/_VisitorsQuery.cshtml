@@ -19,6 +19,27 @@
         <p>Total Visits: @totalVisits</p>
         var avgVisits = totalVisits / parkReports.Count();
         <p>Average Visits: @avgVisits</p>
+
+        var highest = 0;
+        DateTime highestDate = new DateTime();
+        var lowest = 9999999;
+        DateTime lowestDate = new DateTime();
+        foreach (var parkReport in parkReports)
+        {
+            if (parkReport.NumVisitors > highest)
+            {
+                highest = parkReport.NumVisitors;
+                highestDate = parkReport.Date;
+            }
+            if (parkReport.NumVisitors < lowest)
+            {
+                lowest = parkReport.NumVisitors;
+                lowestDate = parkReport.Date;
+
+            }
+        }
+        <p>Highest: @highest on @highestDate.ToString("MM/dd/yyyy")</p>
+        <p>Lowest: @lowest on @lowestDate.ToString("MM/dd/yyyy")</p>
         @:</div>
     @:</div>
 }

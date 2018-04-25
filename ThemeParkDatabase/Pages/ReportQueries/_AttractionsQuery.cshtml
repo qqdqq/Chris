@@ -59,6 +59,17 @@
             }
             <p>Highest count: @highest on @highestDate.ToString("MM/dd/yyyy")</p> // Can't get format right
             <p>Lowest count: @lowest on @lowestDate.ToString("MM/dd/yyyy")</p>
+
+            var numBrokenDown = attraction.MaintenanceRequest.Count();
+            <p>Number maintenance requests: @numBrokenDown</p>
+
+            double totalMaintenanceCost = 0;
+            foreach (var request in attraction.MaintenanceRequest)
+            {
+                totalMaintenanceCost += (double)request.EstimatedCost;
+
+            }
+            <p>Maintenance Cost: $@totalMaintenanceCost</p>
         @:</div>
 
     }

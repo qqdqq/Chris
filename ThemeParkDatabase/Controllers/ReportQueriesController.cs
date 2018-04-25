@@ -65,7 +65,7 @@ namespace ThemeParkDatabase.Controllers
             }
             if (collection["vendorTypeId"] != "All")
             {
-                query.VendorTypeId = Convert.ToInt32(collection["attractionTypeId"]);
+                query.VendorTypeId = Convert.ToInt32(collection["vendorTypeId"]);
             }
             else
             {
