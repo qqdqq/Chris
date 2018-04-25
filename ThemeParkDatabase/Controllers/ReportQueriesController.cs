@@ -37,7 +37,7 @@ namespace ThemeParkDatabase.Controllers
             }
             else
             {
-                query.StartDate = new DateTime(1, 1, 1);
+                query.StartDate = new DateTime(2000, 1, 1);
             }
             if (collection["end-date"] != "")
             {
@@ -65,7 +65,7 @@ namespace ThemeParkDatabase.Controllers
             }
             if (collection["vendorTypeId"] != "All")
             {
-                query.VendorTypeId = Convert.ToInt32(collection["attractionTypeId"]);
+                query.VendorTypeId = Convert.ToInt32(collection["vendorTypeId"]);
             }
             else
             {
@@ -92,6 +92,7 @@ namespace ThemeParkDatabase.Controllers
                         .Include(v => v.VendorSalesReport)
                         .Include(v => v.VendorType)
                         .Include(v => v.Location).ToList();
+                vendorsQuery.VendorTypes = _context.VendorType.ToList();
 
                 return PartialView("/Pages/ReportQueries/_VendorsQuery.cshtml", vendorsQuery);
             }

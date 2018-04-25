@@ -1,8 +1,7 @@
 ﻿@model ThemeParkDatabase.ViewModels.AttractionsQuery
 @using ThemeParkDatabase.Models;
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+
+@* Filters should be good? *@
 
 @{
     List<Attraction> attractions = Model.Attractions.ToList();
@@ -22,12 +21,6 @@
     }
 
     @:<div class="report">
-    @:<div class="report-header">
-        @:Name: @Model.ReportQuery.AttractionName
-        @:Location: @Model.ReportQuery.LocationId
-        @:Date: @Model.ReportQuery.StartDate - @Model.ReportQuery.EndDate
-        @:Type: @Model.ReportQuery.AttractionTypeId
-    @:</div>
     foreach (var attraction in attractions)
     {
         List<AttractionVisit> visits = attraction.AttractionVisit
@@ -36,7 +29,7 @@
             .ToList();
 
         @:<div>
-            <h3>@attraction.Name</h3>
+            <h4>@attraction.Name</h4>
 
             <p>Total visits:@visits.Count()</p>
 
@@ -64,10 +57,19 @@
                     lowest = visitCount;
                 }
             }
-            <p>Highest count: @highest on @highestDate.ToString("MM/dd/yyyy") </p> // Can't get format right
-            <p>Lowest count: @lowest on @lowestDate.ToString()</p>
+            <p>Highest count: @highest on @highestDate.ToString("MM/dd/yyyy")</p> // Can't get format right
+            <p>Lowest count: @lowest on @lowestDate.ToString("MM/dd/yyyy")</p>
 
-            <p>Number of requests: @attraction.MaintenanceRequest.Count()</p>
+            var numBrokenDown = attraction.MaintenanceRequest.Count();
+            <p>Number maintenance requests: @numBrokenDown</p>
+
+            double totalMaintenanceCost = 0;
+            foreach (var request in attraction.MaintenanceRequest)
+            {
+                totalMaintenanceCost += (double)request.EstimatedCost;
+
+            }
+            <p>Maintenance Cost: $@totalMaintenanceCost</p>
         @:</div>
 
     }

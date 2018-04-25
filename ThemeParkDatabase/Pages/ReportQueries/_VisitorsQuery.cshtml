@@ -1,43 +1,45 @@
 ﻿@model ThemeParkDatabase.ViewModels.VisitorsQuery
 @using ThemeParkDatabase.Models;
 
-
+@* Filters should be good *@
 
 @{
     List<DailyParkReport> parkReports = Model.DailyParkReports
         .Where(p => (p.Date >= Model.ReportQuery.StartDate) && (p.Date <= Model.ReportQuery.EndDate))
         .ToList();
-
-    int totalVisits = 0;
-    foreach (var parkReport in parkReports)
-    {
-        totalVisits += parkReport.NumVisitors;
-    }
-    <p>Total Visits: @totalVisits</p>
-    var avgVisits = totalVisits / parkReports.Count();
-    <p>Average Visits: @avgVisits</p>
-
-    var highest = 0;
-
-    @*var highest = 0;
-    var highestDate = new DateTime();
-    var lowest = 9999999; // yea yea yea
-    var lowestDate = new DateTime();
-    for (DateTime iter = firstDate; iter.Date <= lastDate.Date; iter = iter.AddDays(1))
-    {
-        var visitCount = visits.Where(v => (v.Time >= iter) && (v.Time < iter.AddDays(1))).Count();
-
-        if (visitCount > highest)
+    
+    @:<div class="report">
+        @:<div>
+        @:<h4>Visitor Info</h4>
+        int totalVisits = 0;
+        foreach (var parkReport in parkReports)
         {
-            highestDate = iter;
-            highest = visitCount;
+            totalVisits += parkReport.NumVisitors;
         }
-        if (visitCount < lowest)
+        <p>Total Visits: @totalVisits</p>
+        var avgVisits = totalVisits / parkReports.Count();
+        <p>Average Visits: @avgVisits</p>
+
+        var highest = 0;
+        DateTime highestDate = new DateTime();
+        var lowest = 9999999;
+        DateTime lowestDate = new DateTime();
+        foreach (var parkReport in parkReports)
         {
-            lowestDate = iter;
-            lowest = visitCount;
+            if (parkReport.NumVisitors > highest)
+            {
+                highest = parkReport.NumVisitors;
+                highestDate = parkReport.Date;
+            }
+            if (parkReport.NumVisitors < lowest)
+            {
+                lowest = parkReport.NumVisitors;
+                lowestDate = parkReport.Date;
+
+            }
         }
-    }
-    <p>Highest count: @highest on @highestDate.ToString("MM/dd/yyyy") </p> // Can't get format right
-    <p>Lowest count: @lowest on @lowestDate.ToString()</p>*@
+        <p>Highest: @highest on @highestDate.ToString("MM/dd/yyyy")</p>
+        <p>Lowest: @lowest on @lowestDate.ToString("MM/dd/yyyy")</p>
+        @:</div>
+    @:</div>
 }
