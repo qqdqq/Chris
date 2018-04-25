@@ -203,17 +203,18 @@
 
 
                         @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-                        {
+    {
 
-                            <li><a asp-page="/Maintenance/Index"><i class="glyphicon glyphicon-apple"></i>Maintenance</a></li>
-                            <li><a asp-page="/Employees/Index"><i class="glyphicon glyphicon-book"></i>Employees</a></li>
-                            <li><a asp-page="/Reports/Index"><i class="glyphicon glyphicon-plane"></i>Reports</a></li>
+                    <li><a asp-page="/Maintenance/Index"><i class="glyphicon glyphicon-wrench"></i>Maintenance</a></li>
+                    <li><a asp-page="/Employees/Index"><i class="glyphicon glyphicon-user"></i>Employees</a></li>
+                    <li><a asp-page="/Reports/Index"><i class="glyphicon glyphicon-book"></i>Reports</a></li>
+                    <li><a asp-page="/ReportQueries/Index"><i class="glyphicon glyphicon-list"></i>Report Queries</a></li>
 
-                        }
-
-                        <li><a asp-page="/Attractions/Index"><i class="glyphicon glyphicon-piggy-bank"></i>Attractions</a></li>
-                        <li><a asp-page="/Visitors/Index"><i class="glyphicon glyphicon-star"></i>Visitors</a></li>
-                        <li><a asp-page="/Vendors/Index"><i class="glyphicon glyphicon-pencil"></i>Vendors</a></li>
+}
+                        <li><a asp-page="/ParkInfo/Index"><i class="glyphicon glyphicon-globe"></i>ParkInfo</a></li>
+                        <li><a asp-page="/Attractions/Index"><i class="glyphicon glyphicon-sunglasses"></i>Attractions</a></li>
+                        <li><a asp-page="/Visitors/Index"><i class="glyphicon glyphicon-equalizer"></i>Visitors</a></li>
+                        <li><a asp-page="/Vendors/Index"><i class="glyphicon glyphicon-cutlery"></i>Vendors</a></li>
 
 
                     </ul>
