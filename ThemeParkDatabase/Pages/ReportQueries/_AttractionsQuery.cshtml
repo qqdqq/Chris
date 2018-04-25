@@ -1,6 +1,8 @@
 ﻿@model ThemeParkDatabase.ViewModels.AttractionsQuery
 @using ThemeParkDatabase.Models;
 
+@* Filters should be good? *@
+
 @{
     List<Attraction> attractions = Model.Attractions.ToList();
     if (Model.ReportQuery.AttractionName != "All")

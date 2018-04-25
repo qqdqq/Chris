@@ -4,11 +4,25 @@
 @{
     @:<div class="report">
         List<Vendor> vendors = Model.Vendors.ToList();
-        foreach (var vendor in vendors)
-        {
-            List<VendorSalesReport> salesReports = vendor.VendorSalesReport
-                .Where(v => (v.Date >= Model.ReportQuery.StartDate) && (v.Date <= Model.ReportQuery.EndDate))
-                .OrderBy(v => v.Date).ToList();
+    if (Model.ReportQuery.LocationId != -1)
+    {
+        vendors = vendors.Where(v => v.LocationId == Model.ReportQuery.LocationId).ToList();
+    }
+    if (Model.ReportQuery.VendorName != "All")
+    {
+        vendors = vendors.Where(v => (v.VendorType.Name == Model.ReportQuery.VendorName)).ToList();
+    }
+    if (Model.ReportQuery.VendorTypeId != -1)
+    {
+
+
+    }
+
+    foreach (var vendor in vendors)
+    {
+        List<VendorSalesReport> salesReports = vendor.VendorSalesReport
+            .Where(v => (v.Date >= Model.ReportQuery.StartDate) && (v.Date <= Model.ReportQuery.EndDate))
+            .OrderBy(v => v.Date).ToList();
 
             @:<div>
                 <h4>@vendor.Name</h4>

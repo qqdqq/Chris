@@ -1,7 +1,7 @@
 ﻿@model ThemeParkDatabase.ViewModels.VisitorsQuery
 @using ThemeParkDatabase.Models;
 
-
+@* Filters should be good *@
 
 @{
     List<DailyParkReport> parkReports = Model.DailyParkReports
@@ -21,27 +21,4 @@
         <p>Average Visits: @avgVisits</p>
         @:</div>
     @:</div>
-
-
-    @*var highest = 0;
-        var highestDate = new DateTime();
-        var lowest = 9999999; // yea yea yea
-        var lowestDate = new DateTime();
-        for (DateTime iter = firstDate; iter.Date <= lastDate.Date; iter = iter.AddDays(1))
-        {
-            var visitCount = visits.Where(v => (v.Time >= iter) && (v.Time < iter.AddDays(1))).Count();
-
-            if (visitCount > highest)
-            {
-                highestDate = iter;
-                highest = visitCount;
-            }
-            if (visitCount < lowest)
-            {
-                lowestDate = iter;
-                lowest = visitCount;
-            }
-        }
-        <p>Highest count: @highest on @highestDate.ToString("MM/dd/yyyy") </p> // Can't get format right
-        <p>Lowest count: @lowest on @lowestDate.ToString()</p>*@
 }
